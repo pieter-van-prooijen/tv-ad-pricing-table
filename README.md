@@ -15,7 +15,7 @@ providers. The embedded Tomcat also serves a single page Javascript application 
 # Usage
 
 ## Pricing table
-Open the url at (http://localhost:8080/index.html) and login with the either the following credentials:
+Open the url at [http://localhost:8080/index.html] and login with the either the following credentials:
 
 user/user-password  (user role)
 admin/admin-password (admin role)
@@ -58,7 +58,7 @@ appropriate controller methods.
 The _request.sh_ and _upload.sh_ scripts contain curl invocations to exercise the REST endpoints directly.
 
 # Caveats
-+ The application uses basic authentication over plain HTTP, normally you would oonly use this over https (and enforce
++ The application uses basic authentication over plain HTTP, normally you would only use this over https (and enforce
 it with redirects and strict transport security headers). Another way to secure the REST service would be using some
 form of authentication token, like JSON Web Tokens.
 
