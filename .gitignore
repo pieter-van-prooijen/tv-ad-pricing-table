@@ -179,3 +179,5 @@ buildNumber.properties
 hs_err_pid*
 
 .checkstyle
+
+todo.org
