@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.css"/>
+
+    <title>Tv Ad Pricing</title>
+</head>
+
+<body>
+
+<div class="row">
+    <a href="/index.html">Home</a>
+    <a href="/admin.html">Admin</a>
+    <a href="http://bogus@localhost:8080/logout.html">Logout</a>
+</div>
+
+<div class="row">
+    <div class="large-4 columns">
+        <h1>Tv Ad Pricing</h1>
+
+        <form method="GET">
+            <!-- date inputs are not yet implemented in firefox -->
+            <label>
+                Start (yyyy-mm-dd):
+                <input type="date" name="startInclusive" value="2016-06-26" pattern="\d\d\d\d-\d\d-\d\d">
+            </label>
+            <label>
+                End (yyyy-mm-dd, exclusive):
+                <input type="date" name="endExclusive" value="2016-06-28" pattern="\d\d\d\d-\d\d-\d\d">
+            </label>
+            <label>
+                Number of occurrences:
+                <input type="number" name="nofOccurrences" value="1">
+            </label>
+            <label>
+                Length of advertisment in seconds:
+                <select list="durations" name="durationSeconds">
+                    <option>15</option>
+                    <option selected>30</option>
+                    <option>45</option>
+                    <option>60</option>
+                    <option>90</option>
+                    <option>120</option>
+                </select>
+            </label>
+            <span class="button" onClick="javascript:return getPricing();">Submit</span>
+        </form>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Channel</th>
+                <th>Price (Euros)</th>
+            </tr>
+            </thead>
+            <tbody id="result">
+            </tbody>
+        </table>
+
+        <div class="callout alert" id="error">
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/2.1.1/what-input.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.js"></script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#error").hide();
+    });
+
+    function getPricing() {
+        $.ajax({
+            url: "http://localhost:8080/channels",
+            data: {
+                startInclusive: $("[name=startInclusive]").val(),
+                endExclusive: $("[name=endExclusive]").val(),
+                nofOccurrences: $("[name=nofOccurrences]").val(),
+                durationSeconds: $("[name=durationSeconds]").val(),
+            },
+        }).then(function (data) {
+            $("#error").hide();
+            $("#result").empty();
+            data.forEach(function (pricing) {
+                $("#result").append("<tr><td>" + pricing.channel + "</td><td>" + pricing.priceEuros +
+                        "</td></tr>");
+            });
+        }, function (_, _, errorThrown) {
+            $("#result").empty();
+            $("#error").show();
+            $("#error").empty();
+            $("#error").append(errorThrown.toString());
+        });
+        return false;
+    }
+
+    function logout() {
+        $.ajax({
+            url: "http://localhost:8080/logout.html",
+            username: "logmeout",
+            password: "1234567"
+        }).then(function (data) {
+            window.location = "http://localhost:8080/index.html";
+        }, function () {
+            window.location = "http://localhost:8080/index.html";
+        });
+        return false;
+    }
+</script>
+
+</body>
+</html>

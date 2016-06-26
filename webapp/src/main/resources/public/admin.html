@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.css"/>
+
+    <title>Admin</title>
+</head>
+
+<body>
+
+<div class="row">
+    <a href="/index.html">Home</a>
+    <a href="/admin.html">Admin</a>
+    <a href="http://bogus:bogus@localhost:8080/logout.html">Logout</a>
+</div>
+
+<div class="row">
+    <div class="large-4 columns">
+        <h1>Admin</h1>
+
+        <form action="/channel-pricing-jars" method="POST" enctype="multipart/form-data">
+            <label>
+                Upload a new pricing jar:
+                <input type="file" name="file" accept=".jar">
+            </label>
+            <input class="button" type="submit" name="submit" value="submit">
+            <!-- FIXME: add CSRF token here -->
+        </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/2.1.1/what-input.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.js"></script>
+</body>
+</html>
