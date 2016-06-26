@@ -15,7 +15,7 @@ providers. The embedded Tomcat also serves a single page Javascript application 
 # Usage
 
 ## Pricing table
-Open the url at [http://localhost:8080/index.html] and login with the either the following credentials:
+Open the url at (http://localhost:8080/index.html) and login with the either the following credentials:
 
 user/user-password  (user role)
 admin/admin-password (admin role)
